@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Alva Odontologia · Protótipo demonstrativo Or7.dev</title>
+    <meta name="description" content="Protótipo demonstrativo de website para clínica odontológica: tratamentos, visita guiada, especialistas e agendamento. Marca fictícia criada pela Or7.dev." />
+    <meta name="robots" content="noindex" />
+    <meta property="og:title" content="Alva Odontologia · Protótipo Or7.dev" />
+    <meta property="og:description" content="Odontologia contemporânea, tecnologia e cuidado em cada detalhe. Marca fictícia, conteúdo demonstrativo." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#F6F4EF" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#131B19" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="preload" as="image" type="image/webp" href="./images/hero-smile-lg.webp" imagesrcset="./images/hero-smile-sm.webp 800w, ./images/hero-smile-lg.webp 1800w" imagesizes="(min-width: 1024px) 38vw, 80vw" fetchpriority="high" />
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('alva-theme');
+          if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>Este protótipo precisa de JavaScript para exibir as seções interativas.</noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,242 @@
+@import 'tailwindcss';
+
+/* ---------- Fontes (Fontshare · ITF Free Font License, ver src/assets/fonts/FFL.txt) ---------- */
+@font-face {
+  font-family: 'Boska';
+  src: url('./assets/fonts/Boska-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Boska';
+  src: url('./assets/fonts/Boska-MediumItalic.woff2') format('woff2');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url('./assets/fonts/Satoshi-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url('./assets/fonts/Satoshi-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+/* Fallbacks com métricas aproximadas para reduzir layout shift durante o swap. */
+@font-face {
+  font-family: 'Boska Fallback';
+  src: local('Georgia');
+  size-adjust: 96%;
+  ascent-override: 92%;
+}
+@font-face {
+  font-family: 'Satoshi Fallback';
+  src: local('Arial');
+  size-adjust: 100%;
+  ascent-override: 96%;
+}
+
+/* ---------- Tokens semânticos ---------- */
+:root,
+[data-theme='light'] {
+  --bg: #f6f4ef;
+  --surface: #ffffff;
+  --surface-2: #ebe9e2;
+  --ink: #252b29;
+  --ink-2: #646d68;
+  --accent: #64877a; /* decorativo e textos grandes (3.6:1 sobre --bg) */
+  --accent-strong: #385c50; /* textos, links e botões (6.9:1 sobre --bg) */
+  --on-accent: #ffffff;
+  --line: #dcddd6;
+  --danger: #a8432c;
+  --veil: rgb(246 244 239 / 0.72);
+  --shadow: 0 1px 2px rgb(37 43 41 / 0.06), 0 12px 32px -12px rgb(37 43 41 / 0.18);
+  color-scheme: light;
+}
+
+[data-theme='dark'],
+.scope-dark {
+  --bg: #131b19;
+  --surface: #1d2824;
+  --surface-2: #26352f;
+  --ink: #f5f3ec;
+  --ink-2: #b1beb6;
+  --accent: #a4c4b2;
+  --accent-strong: #a4c4b2;
+  --on-accent: #131b19;
+  --line: #35443d;
+  --danger: #f0a48f;
+  --veil: rgb(19 27 25 / 0.72);
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 16px 40px -16px rgb(0 0 0 / 0.6);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-on-accent: var(--on-accent);
+  --color-line: var(--line);
+  --color-danger: var(--danger);
+  --color-veil: var(--veil);
+  --font-display: 'Boska', 'Boska Fallback', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Satoshi', 'Satoshi Fallback', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+  --breakpoint-xs: 400px;
+}
+
+/* ---------- Base ---------- */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 96px;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+  transition: background-color 0.4s var(--ease-out-soft), color 0.4s var(--ease-out-soft);
+}
+::selection {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Foco visível e consistente em todo o site. */
+:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+.scope-dark :focus-visible {
+  outline-color: var(--accent);
+}
+
+/* ---------- Escala tipográfica ---------- */
+@utility t-display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.9rem, 1.2rem + 5.6vw, 7rem);
+  line-height: 0.94;
+  letter-spacing: -0.025em;
+}
+@utility t-h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.5rem, 1.5rem + 4.2vw, 5.25rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+@utility t-h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2rem, 1.35rem + 2.6vw, 3.6rem);
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+}
+@utility t-h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 1.2rem + 1.1vw, 2.15rem);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+@utility t-lead {
+  font-size: clamp(1.125rem, 1rem + 0.4vw, 1.3rem);
+  line-height: 1.55;
+}
+@utility t-small {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+@utility t-label {
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+/* Container com respiro lateral próprio para mobile. */
+@utility shell {
+  width: 100%;
+  max-width: 1360px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 0.6rem + 3vw, 3.5rem);
+}
+
+/* Arco: máscara assinatura da marca. */
+@utility arch {
+  border-radius: 9999px 9999px 0 0;
+}
+@utility arch-soft {
+  border-radius: 9999px 9999px 24px 24px;
+}
+
+/* Linha fina usada como régua tipográfica. */
+@utility hairline {
+  height: 1px;
+  background: var(--line);
+}
+
+/* Moldura da hero: verde profundo que continua o fundo do retrato, igual nos dois temas. */
+.hero-frame {
+  background: #1f2b26;
+}
+
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  padding: 0.75rem 1.25rem;
+  border-radius: 999px;
+  background: var(--accent-strong);
+  color: var(--on-accent);
+  font-weight: 500;
+  transition: top 0.2s var(--ease-out-soft);
+}
+.skip-link:focus-visible {
+  top: 1rem;
+}
+
+/* Textura de papel muito sutil sobre o fundo (estática, sem custo de animação). */
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Esconde a barra de rolagem horizontal de trilhos sem impedir o uso. */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
